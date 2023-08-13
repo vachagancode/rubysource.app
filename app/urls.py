@@ -15,5 +15,5 @@ urlpatterns = [
     path('new_category/', views.new_category, name='new_category'),
     path('new_course_of_category/', views.new_category_course, name='new_cat_course'),
 ]
-if settings.DEBUG:
+if settings.DEBUG == False:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

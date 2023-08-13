@@ -1,0 +1,1 @@
+[{"model": "app.courses", "pk": 8, "fields": {"title": "Artificial Intelligence and Machine Learning"}}, {"model": "app.courses", "pk": 9, "fields": {"title": "Cybersecurity"}}, {"model": "app.courses", "pk": 10, "fields": {"title": "IT - Development"}}, {"model": "app.courses", "pk": 12, "fields": {"title": "E-commerce"}}]

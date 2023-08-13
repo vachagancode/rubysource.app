@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration Panel</title>
+    <style>
+        body {
+            background-color: #111;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        a {
+            display: block;
+            margin: 10px;
+            font-size: 85px;
+            text-decoration: none;
+            color: #ff387a;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #ff66a0;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'app:course' %}">New Course</a>
+    <a href="{% url 'app:new_category' %}">New Category</a>
+    <a href="{% url 'app:new_cat_course' %}">New Category-Course</a>
+    <a href="{% url 'app:resource' %}">New Resource</a>
+    <a href="{% url 'app:copyright' %}">New Copyright Rule</a>
+</body>
+</html>

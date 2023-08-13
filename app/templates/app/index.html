@@ -1,0 +1,149 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+    <link rel="icon" href="{% static '/img/logoMain.png' %}" />
+    <script src="{% static 'index.js' %}"></script>
+    <style>
+    .dir-card {
+        background-color: #445069;
+        color: #fff;
+        height: 200px;
+        width: 450px;
+        border-radius: 45px;
+        text-align: center;
+        padding-top: 15px;
+    }
+    .dir-card h2 {
+        color: #fff;
+        margin-top: 65px;
+    }
+
+    .dir-card-link {
+        color: #fff;
+        margin-top: 35px;
+    }
+
+        
+    @keyframes rotateHeaderLogo {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(1800deg);
+        }
+    }
+
+    .logo:hover {
+        animation: rotateHeaderLogo 60s infinite;
+    }   
+
+    @media screen and (min-width: 768px) {
+            .resource {
+                width: 50%;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .resource {
+                width: 33.33%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="left-header">
+            <img class="logo" src="{% static '/img/logoMain.png' %}" alt="logomain">
+            <h2 class="logo-text">Rubysource</h2>
+            <h6 style="z-index: 1;" class="beta-warning">Beta Test</h6>
+        </div>
+        <div class="right-header">
+            <nav class="nav">
+                <ul class="nav_list">
+                    <li class="nav-list-item"><a class="nav-list-item-link" href="{% url 'app:index' %}">Home</a></li>
+                    <li id="courses" class="nav-list-item"><a class="nav-list-item-link" href="#">Courses</a></li>
+                    <li id="resources" class="nav-list-item"><a class="nav-list-item-link" href="#">Resources</a></li>
+                    <li id="copyright" class="copyright nav-list-item"><a class="nav-list-item-link" href="#">Copyright</a></li>
+                    {% if user.is_authenticated %}
+                        <a class="auth-button" href="{% url 'users:logout' %}">Logout</a>
+                    {% else %}
+                        <a class="auth-button" href="{% url 'users:login' %}">Login</a>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="section-main-info">
+                <div class="button-div">
+                    <div class="buttons">
+                        <a class="info-button-course" href="{% url 'users:login' %}">Login</a>
+                        <p class="button-breaker"><br /></p>
+                        <a class="info-button" href="{% url 'users:registration' %}">Sign Up</a>
+                    </div>
+                    <img class="logo-rotating" src="{% static '/img/logoMain.png' %}" alt="logomain">
+                </div>
+                <div class="heading-text">
+                    <span class="rubysource">RUBYSOURCE</span> <br />LEARN ANY SKILL <br />YOU WANT !
+                </div>
+        </div>
+        <div class="section-directions">
+            <h2 class="heading-directions">Courses</h2>
+            <div class="directions-cards">
+                {% for course in courses %}
+                <div class="dir-card">
+                    <h2><a class="dir-card-link" href="{% url 'app:category' course.title %}">{{ course.title }}</a></h2>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="section-resources">
+            <h2 class="heading-resources">Resources</h2>
+            <div class="resources-names-links">
+                <div class="resources">
+                    {% for resource in resources %}
+                    <div class="resource">
+                        <h3 class="resource-title">{{resource.id}}.{{resource.resource_name}} - <a class="resource-title-link" target="_blank" href="{{ resource.resource_link }}">{{ resource.resource_link }}</a></h3>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="section-copyright">
+            <h2 class="copyright-title">Copyright</h2>
+            {% for rule in rules %}
+                <p class="copyright-rule">- {{ rule.copyright_rule }}</p>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-left">
+            <h2 class="creator-name">Made by - <a class="twitter-link" href="https://twitter.com/karapetyan_vv">Vachagan Karapetyan</a></h2>
+            <p class="site-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+            <div class="small-info">
+                <h5 class="app-name">Rubysource</h5>
+                <div class="logos">
+                    <a target="_blank" href="https://github.com/vachagancode"><img class="social-logo" src="{% static  '/img/github logo.png' %}" alt="TwitterLogo"></a>
+                    <a target="_blank" href="https://twitter.com/karapetyan_vv"><img class="social-logo" src="{% static '/img/twitter logo.png' %}" alt="GithubLogo"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-right">
+            <nav class="nav">
+                <ul class="nav_list">
+                    <li class="nav-list-item"><a class="footer-link nav-list-item-link" href="{% url 'app:index' %}">Home</a></li>
+                    <!-- <li class="nav-list-item"><a class="footer-link nav-list-item-link" href="#">Courses</a></li> -->
+                    <a class="auth-button" href="{% url 'users:login' %}">Login</a>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+</body>
+</html>
